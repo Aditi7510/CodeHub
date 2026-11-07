@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeHub | Multi-Language Compiler</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">&lt;/&gt;</span> CodeHub</a>
+    <span class="tagline">A simple multi-language coding playground</span>
+  </header>
+
+  <main class="workspace">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">ONLINE CODE PLAYGROUND</p>
+        <h1>Write. Run. <span>Explore.</span></h1>
+        <p class="subheading">One workspace for Python, Java and JavaScript.</p>
+      </div>
+      <div class="status-pill"><span></span> Local compiler</div>
+    </section>
+
+    <section class="editor-card">
+      <div class="toolbar">
+        <div class="language-control">
+          <label for="language">Language</label>
+          <select id="language">
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+            <option value="javascript">JavaScript (Node.js)</option>
+          </select>
+        </div>
+        <div class="actions">
+          <button id="resetBtn" class="btn secondary">Reset</button>
+          <button id="clearBtn" class="btn secondary">Clear</button>
+          <button id="runBtn" class="btn run"><span>▶</span> Run Code</button>
+        </div>
+      </div>
+
+      <div class="editor-heading">
+        <span class="file-dot"></span><span id="filename">main.py</span>
+        <span class="editor-hint">Write your program below</span>
+      </div>
+      <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off"
+        aria-label="Code editor">{{ default_code.python }}</textarea>
+
+      <div class="input-section">
+        <label for="stdin">Custom input <span>(optional; one line or more)</span></label>
+        <textarea id="stdin" rows="3" placeholder="Enter input for your program here..."></textarea>
+      </div>
+
+      <section class="output-card">
+        <div class="output-heading">
+          <div><span class="terminal-icon">›_</span> Output</div>
+          <span id="status" class="status">Ready</span>
+        </div>
+        <pre id="output">Your program output will appear here...</pre>
+      </section>
+    </section>
+    <p class="footnote">Tip: Select a language, edit the sample code, add input if needed, then click Run Code.</p>
+  </main>
+  <footer>CodeHub · Built with Python, Flask, HTML, CSS and JavaScript</footer>
+  <script>
+    window.DEFAULT_CODE = {{ default_code | tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
